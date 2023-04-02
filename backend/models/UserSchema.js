@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		trim: true,
+		collation: {
+			locale: 'sv',
+			strength: 2,
+		},
 	},
 	password: {
 		type: String,
