@@ -35,6 +35,5 @@ app.listen(port, () => {
 
 async function connectDatabase(username, password) {
 	const url = `mongodb+srv://${username}:${password}@davidssvensexa.hhcgx1k.mongodb.net/?retryWrites=true&w=majority`;
-	console.log(url);
 	await mongoose.connect(url);
 }

@@ -70,6 +70,7 @@ userController.userRegister = async (req, res, next) => {
 		const newUser = new User({
 			username: req.body.username.toLowerCase(),
 			password: req.body.password,
+			type: req.body.type,
 		});
 
 		await newUser.save();
