@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -11,9 +12,11 @@ connectDatabase(process.env.MONGO_USERNAME, process.env.MONGO_PASSWORD).catch(
 );
 
 // Additional middleware
+app.use(cors());
 app.use(express.json());
 
 app.use('/tasks', require('./routes/taskRoute'));
+app.use('/user', require('./routes/userRoute'));
 
 // Catch 404
 app.use((req, res) => {
