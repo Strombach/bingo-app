@@ -1,11 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 
 const port = 4000;
+
+app.use(
+	morgan('dev', {
+		skip: function (req, res) {
+			return res.statusCode < 400;
+		},
+	})
+);
+
+app.use(
+	morgan('common', {
+		stream: fs.createWriteStream(path.join(__dirname, 'access.log'), {
+			flags: 'a',
+		}),
+	})
+);
 
 connectDatabase(process.env.MONGO_USERNAME, process.env.MONGO_PASSWORD).catch(
 	(err) => console.log(err)
