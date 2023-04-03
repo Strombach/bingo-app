@@ -26,6 +26,7 @@ taskController.getTask = async (req, res) => {
 
 // Create a new task.
 taskController.postTask = async (req, res) => {
+	console.log(req.body.userData);
 	try {
 		const newTask = new Task({
 			task: 'Testeli test test',
