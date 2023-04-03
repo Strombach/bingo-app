@@ -43,7 +43,8 @@ userController.userLogin = async (req, res, next) => {
 					if (err) console.log(err);
 
 					res.status(200).json({
-						message: 'Login Successful',
+						loginStatus: true,
+						userType: loginUser.type,
 						JWT: token,
 					});
 				}
