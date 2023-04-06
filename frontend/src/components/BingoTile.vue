@@ -5,7 +5,8 @@
     const store = useUserStore();
 
     const props = defineProps({
-        task: Object
+        task: Object,
+        updateTask: Function
     })
 
     const task = ref(props.task)
@@ -22,6 +23,8 @@
         else {
             task.value.isDone = !task.value.isDone
         }
+
+        props.updateTask(task.value)
     }
 </script>
 

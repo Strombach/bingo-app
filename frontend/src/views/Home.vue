@@ -18,8 +18,4 @@
 </template>
 
 <style scoped>
-    #bingo_board {
-        display: grid;
-        grid-template-columns: repeat(5, 20%);
-    }
 </style>
