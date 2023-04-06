@@ -46,11 +46,12 @@ taskController.postTask = async (req, res) => {
 // Update a task.
 taskController.updateTask = async (req, res) => {
 	try {
+		console.log(req.body);
 		const taskToUpdate = await Task.findByIdAndUpdate(
 			{
 				_id: req.params.taskId,
 			},
-			req.body
+			req.body.updatedTask
 		);
 
 		res.json(taskToUpdate);
