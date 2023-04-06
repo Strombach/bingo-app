@@ -12,8 +12,15 @@
     let failed = ref(false)
 
     async function login() {
+
+        let uri = '/api/user/login'
+
+        if (import.meta.env.VITE_ENV === 'dev') {
+            uri = 'http://localhost:4000' + uri
+        }
+
         try {
-            const res = await fetch(`/api/user/login`, {
+            const res = await fetch(uri, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

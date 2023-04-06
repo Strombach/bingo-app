@@ -1,17 +1,22 @@
 <script setup>
-    import { ref } from 'vue';
     import BingoTile from '../components/BingoTile.vue'
+    import TileForm from './TileForm.vue';
     import { useUserStore } from '../stores/auth.store';
+    import { useTaskStore } from '../stores/task.store';
 
-    const store = useUserStore();
+    const userStore = useUserStore();
+    const taskStore = useTaskStore()
 
-    const tasks = ref([]);
+    const JWT = userStore.user.JWT
 
-    const JWT = store.user.JWT
+    let uri = '/api/tasks'
+
+    if (import.meta.env.VITE_ENV === 'dev') {
+        uri = 'http://localhost:4000' + uri
+    }
 
     async function getTasks() {
-
-        const res = await fetch(`/api/tasks`, {
+        const res = await fetch(uri, {
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${JWT}`,
@@ -21,21 +26,24 @@
 
         const jsonData = await res.json();
 
-        tasks.value = jsonData
+        taskStore.allTasks = jsonData
     }
 
-    async function updateTask(task) {
-        const res = await fetch(`/api/tasks/${task._id}`, {
+    async function updateTask() {
+        const updatedTask = taskStore.selectedTask
+
+        await fetch(`${uri}/${updatedTask._id}`, {
             method: 'PATCH',
             headers: {
                 "Authorization": `Bearer ${JWT}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                isDone: task.isDone,
-                lifeline: task.lifeline
-            })
+            body: JSON.stringify({ updatedTask })
         })
+    }
+
+    function handleSelect(task) {
+        taskStore.selectTask(task)
     }
 
     getTasks()
@@ -44,7 +52,10 @@
 <template>
     <div id="bingo">
         <div id="bingo_board">
-            <BingoTile v-for="obj in tasks" :key="obj.id" :task="obj" :updateTask="updateTask"></BingoTile>
+            <BingoTile v-for="obj in taskStore.allTasks" :key="obj.id" :task="obj" :onSelect="handleSelect"></BingoTile>
+        </div>
+        <div id="tile_form">
+            <TileForm :onSave="updateTask"></TileForm>
         </div>
     </div>
 </template>

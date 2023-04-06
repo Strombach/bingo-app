@@ -1,36 +1,39 @@
 <script setup>
     import { ref } from 'vue';
     import { useUserStore } from '../stores/auth.store';
+    import { useTaskStore } from '../stores/task.store';
 
     const store = useUserStore();
+    const taskStore = useTaskStore();
 
     const props = defineProps({
         task: Object,
-        updateTask: Function
+        onSelect: Function
     })
 
     const task = ref(props.task)
 
-    function toggleState() {
+    function selecetTile() {
         if (store.user.userType === 'svenne') return;
 
-        if (task.value.isDone && !task.value.lifeline) {
-            task.value.lifeline = !task.value.lifeline
-        } else if (task.value.isDone && task.value.lifeline) {
-            task.value.isDone = !task.value.isDone
-            task.value.lifeline = !task.value.lifeline
-        }
-        else {
-            task.value.isDone = !task.value.isDone
-        }
+        // if (task.value.isDone && !task.value.lifeline) {
+        //     task.value.lifeline = !task.value.lifeline
+        // } else if (task.value.isDone && task.value.lifeline) {
+        //     task.value.isDone = !task.value.isDone
+        //     task.value.lifeline = !task.value.lifeline
+        // }
+        // else {
+        //     task.value.isDone = !task.value.isDone
+        // }
 
-        props.updateTask(task.value)
+        props.onSelect(task)
     }
 </script>
 
 <template>
-    <div class="bingo_tile" :class="{ isDone: task.isDone && !task.lifeline, lifeline: task.isDone && task.lifeline }"
-        @click="toggleState">
+    <div class="bingo_tile"
+        :class="{ isDone: task.isDone && !task.lifeline, lifeline: task.isDone && task.lifeline, selected: task._id === taskStore.selectedTask._id }"
+        @click="selecetTile">
         <h4>{{ task.task }} - {{ task.id }}</h4>
         <p>{{ task.value }}</p>
     </div>
@@ -47,5 +50,9 @@
 
     .lifeline {
         background-color: yellow;
+    }
+
+    .selected {
+        background-color: blue;
     }
 </style>

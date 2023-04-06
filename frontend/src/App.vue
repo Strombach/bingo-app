@@ -1,6 +1,4 @@
 <script setup>
-  import { fetchAllTasks } from './services/TaskService'
-
 </script>
 
 <template>
