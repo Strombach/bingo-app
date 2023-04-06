@@ -9,6 +9,8 @@
     let username = ref('')
     let password = ref('')
 
+    let failed = ref(false)
+
     async function login() {
         try {
             const res = await fetch('http://localhost:4000/user/login', {
@@ -30,20 +32,19 @@
 
             router.push({ path: '/' })
         } catch (error) {
-            console.log('Failed')
+            failed.value = true
             console.log(error)
         }
     }
 </script>
 
 <template>
+    <p v-if="failed">WRONG USERNAME OR PASSWORD</p>
     <form @submit.prevent="login">
         <label>Username</label>
         <input type="text" v-model="username">
-        <p>Username is {{ username }}</p>
         <label>Password</label>
         <input type="password" v-model="password">
         <button type="submit">Login</button>
     </form>
-    <button @click="test">Test store</button>
 </template>

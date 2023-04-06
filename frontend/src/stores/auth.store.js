@@ -8,12 +8,20 @@ export const useUserStore = defineStore('user', () => {
 	const updateUser = (newUser) => {
 		user.value = newUser;
 
-		console.log(newUser);
 		storage.setData('user', newUser);
+	};
+
+	const logoutUser = (logoutUser) => {
+		const logoutJWT = logoutUser.JWT;
+
+		if (user.value.JWT === logoutJWT) {
+			storage.setData('user', {});
+		}
 	};
 
 	return {
 		user,
 		updateUser,
+		logoutUser,
 	};
 });
