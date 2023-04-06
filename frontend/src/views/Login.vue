@@ -13,7 +13,9 @@
 
     async function login() {
         try {
-            const res = await fetch('http://localhost:4000/user/login', {
+            const url = import.meta.env.VITE_API_URL
+
+            const res = await fetch(`${url}/user/login`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -30,7 +32,7 @@
 
             store.updateUser(userData)
 
-            router.push({ path: '/' })
+            router.push({ path: '/bingo' })
         } catch (error) {
             failed.value = true
             console.log(error)

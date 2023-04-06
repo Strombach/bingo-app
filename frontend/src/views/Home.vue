@@ -1,6 +1,5 @@
 <script setup>
-    import arr from '../../test.json';
-    import BingoTile from '../components/BingoTile.vue'
+    import BingoBoard from '../components/BingoBoard.vue';
     import { useRouter } from 'vue-router';
     import { useUserStore } from '../stores/auth.store';
 
@@ -9,18 +8,13 @@
 
     function logout() {
         store.logoutUser(store.user)
-        router.push({ path: '/login' })
+        router.push({ path: '/' })
     }
 </script>
 
 <template>
     | <button @click="logout">Logout</button>
-    <div id="bingo">
-        <div id="bingo_board">
-            <BingoTile v-for="obj in arr" :key="obj.id" :task="obj">{{ obj.activity }} - {{ obj.value }}</BingoTile>
-        </div>
-        <h2>Hello from Home vue</h2>
-    </div>
+    <BingoBoard></BingoBoard>
 </template>
 
 <style scoped>

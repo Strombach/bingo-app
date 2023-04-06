@@ -6,8 +6,8 @@
 <template>
   <div id="app">
     <h1>BINGO!!!</h1>
-    <router-link :to="'/login'">Login</router-link> |
-    <router-link :to="'/'">Home</router-link>
+    <router-link :to="'/'">Login</router-link> |
+    <router-link :to="'/bingo'">Bingo</router-link>
     <router-view></router-view>
   </div>
 </template>

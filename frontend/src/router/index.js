@@ -5,7 +5,7 @@ import storage from '../stores/localStorage.store';
 
 const routes = [
 	{
-		path: '/login',
+		path: '/',
 		name: 'Login',
 		component: Login,
 		meta: {
@@ -13,7 +13,7 @@ const routes = [
 		},
 	},
 	{
-		path: '/',
+		path: '/bingo',
 		name: 'Bingo',
 		component: Bingo,
 		meta: {
