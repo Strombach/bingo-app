@@ -34,8 +34,8 @@ connectDatabase(process.env.MONGO_USERNAME, process.env.MONGO_PASSWORD).catch(
 app.use(cors());
 app.use(express.json());
 
-app.use('/tasks', require('./routes/taskRoute'));
-app.use('/user', require('./routes/userRoute'));
+app.use('/api/tasks', require('./routes/taskRoute'));
+app.use('/api/user', require('./routes/userRoute'));
 
 // Catch 404
 app.use((req, res) => {
