@@ -7,12 +7,11 @@
 
     const tasks = ref([]);
 
+    const JWT = store.user.JWT
+
     async function getTasks() {
-        const url = import.meta.env.VITE_API_URL
 
-        const JWT = store.user.JWT
-
-        const res = await fetch(`${url}/tasks`, {
+        const res = await fetch(`/api/tasks`, {
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${JWT}`,
@@ -26,13 +25,7 @@
     }
 
     async function updateTask(task) {
-        console.log(task)
-
-        const url = import.meta.env.VITE_API_URL
-
-        const JWT = store.user.JWT
-
-        const res = await fetch(`${url}/tasks/${task._id}`, {
+        const res = await fetch(`/api/tasks/${task._id}`, {
             method: 'PATCH',
             headers: {
                 "Authorization": `Bearer ${JWT}`,
@@ -43,10 +36,6 @@
                 lifeline: task.lifeline
             })
         })
-
-        const jsonData = await res.json();
-
-        console.log(jsonData)
     }
 
     getTasks()
