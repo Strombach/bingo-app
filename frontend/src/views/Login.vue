@@ -37,7 +37,7 @@
 
             store.updateUser(userData)
 
-            router.push({ path: '/bingo' })
+            router.push({ path: '/' })
         } catch (error) {
             failed.value = true
             console.log(error)

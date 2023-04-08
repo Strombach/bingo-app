@@ -8,7 +8,7 @@
 
     function logout() {
         store.logoutUser(store.user)
-        router.push({ path: '/' })
+        router.push({ path: '/login' })
     }
 </script>
 
