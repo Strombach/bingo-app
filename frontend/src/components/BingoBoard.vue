@@ -1,6 +1,6 @@
 <script setup>
     import BingoTile from '../components/BingoTile.vue'
-    import TileForm from './TileForm.vue';
+    import TileForm from './TaskForm.vue';
     import { useUserStore } from '../stores/auth.store';
     import { useTaskStore } from '../stores/task.store';
 
