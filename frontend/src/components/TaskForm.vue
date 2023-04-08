@@ -18,11 +18,10 @@
 <template>
     <div v-show="taskStore.selectedTask" id="tileForm">
         <h3>ID: {{ taskStore.selectedTask._id }}</h3>
-        <textarea name="" id="" cols="30" rows="1" v-model="taskStore.selectedTask._id"></textarea>
         <label for="task">Task: </label>
         <textarea name="task" id="" cols="30" rows="2" v-model="taskStore.selectedTask.task"></textarea>
         <label for="value">Worth (SEK): </label>
-        <textarea name="value" id="" cols="30" rows="1" v-model="taskStore.selectedTask.value"></textarea>
+        <input type="number" v-model="taskStore.selectedTask.value">
         <label for="isDone">Done: </label>
         <input type="checkbox" @change="checkLifeline" name="isDone" id="" v-model="taskStore.selectedTask.isDone">
         <label for="lifeline">Used lifeline: </label>
@@ -32,4 +31,8 @@
 </template>
 
 <style scoped>
+    textarea,
+    button {
+        display: block;
+    }
 </style>

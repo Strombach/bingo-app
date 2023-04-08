@@ -15,17 +15,6 @@
 
     function selecetTile() {
         if (store.user.userType === 'svenne') return;
-
-        // if (task.value.isDone && !task.value.lifeline) {
-        //     task.value.lifeline = !task.value.lifeline
-        // } else if (task.value.isDone && task.value.lifeline) {
-        //     task.value.isDone = !task.value.isDone
-        //     task.value.lifeline = !task.value.lifeline
-        // }
-        // else {
-        //     task.value.isDone = !task.value.isDone
-        // }
-
         props.onSelect(task)
     }
 </script>
