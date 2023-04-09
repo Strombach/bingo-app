@@ -45,8 +45,8 @@ taskController.postTask = async (req, res) => {
 
 // Update a task.
 taskController.updateTask = async (req, res) => {
+	const socket = req.app.get('socket');
 	try {
-		console.log(req.body);
 		const taskToUpdate = await Task.findByIdAndUpdate(
 			{
 				_id: req.params.taskId,
@@ -58,13 +58,13 @@ taskController.updateTask = async (req, res) => {
 	} catch (error) {
 		res.status(404).json(error);
 	}
+
+	socket.broadcast.emit('test', 'testUpdate!');
 };
 
 // Delete the task which id matches the id sent in body.
 taskController.deleteTask = async (req, res) => {
 	try {
-		console.log(req.body);
-
 		const taskToDelete = await Task.findByIdAndDelete({
 			_id: req.body.taskId,
 		});

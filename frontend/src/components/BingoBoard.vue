@@ -1,14 +1,19 @@
 <script setup>
-    import { ref } from 'vue';
     import BingoTile from '../components/BingoTile.vue'
-    import TileForm from './TaskForm.vue';
     import Summary from '../components/Summary.vue';
     import { useUserStore } from '../stores/auth.store';
     import { useTaskStore } from '../stores/task.store';
+    import TaskForm from './TaskForm.vue';
+    import { socket } from '../socket'
+
+    socket.connect()
+
+    socket.on('test', (msg) => {
+        getTasks()
+    })
 
     const userStore = useUserStore();
     const taskStore = useTaskStore()
-
     const JWT = userStore.user.JWT
 
     let uri = '/api/tasks'
@@ -32,6 +37,7 @@
         taskStore.allTasks = jsonData
 
         taskStore.updateTask()
+        console.log('WS Update!')
     }
 
     async function updateTask() {
@@ -53,10 +59,6 @@
         taskStore.selectTask(task)
     }
 
-    function test() {
-        console.log(taskStore.allTasks)
-    }
-
     getTasks()
 </script>
 
@@ -67,9 +69,8 @@
             <BingoTile v-for="obj in taskStore.allTasks" :key="obj.id" :task="obj" :onSelect="handleSelect"></BingoTile>
         </div>
         <div v-if="userStore.user.userType !== 'svenne'" id="tile_form">
-            <TileForm :onSave="updateTask"></TileForm>
+            <TaskForm :onSave="updateTask" :task="taskStore.selectedTask"></TaskForm>
         </div>
-        <button @click="test">TEST EVENT</button>
     </div>
 </template>
 
