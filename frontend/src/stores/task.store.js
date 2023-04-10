@@ -6,7 +6,7 @@ export const useTaskStore = defineStore('task', () => {
 	const selectedTask = ref({});
 
 	const selectTask = (newSelection) => {
-		selectedTask.value = newSelection.value;
+		selectedTask.value = newSelection;
 	};
 
 	const total = computed(() => {
