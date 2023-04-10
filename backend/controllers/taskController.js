@@ -45,6 +45,7 @@ taskController.postTask = async (req, res) => {
 
 // Update a task.
 taskController.updateTask = async (req, res) => {
+	const io = req.app.get('socketio');
 	try {
 		const taskToUpdate = await Task.findByIdAndUpdate(
 			{
@@ -53,7 +54,7 @@ taskController.updateTask = async (req, res) => {
 			req.body.updatedTask
 		);
 
-		req.io.emit('test', 'Hello');
+		io.emit('test', 'Hello world!');
 		res.json(req.body.updatedTask);
 	} catch (error) {
 		console.log(error);
