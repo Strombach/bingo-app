@@ -1,3 +1,4 @@
+const io = require('socket.io');
 const taskController = {};
 
 const Task = require('../models/TaskSchema');
@@ -26,7 +27,6 @@ taskController.getTask = async (req, res) => {
 
 // Create a new task.
 taskController.postTask = async (req, res) => {
-	console.log(req.body.userData);
 	try {
 		const newTask = new Task({
 			task: 'Testeli test test',
@@ -45,7 +45,6 @@ taskController.postTask = async (req, res) => {
 
 // Update a task.
 taskController.updateTask = async (req, res) => {
-	const socket = req.app.get('socket');
 	try {
 		const taskToUpdate = await Task.findByIdAndUpdate(
 			{
@@ -54,12 +53,12 @@ taskController.updateTask = async (req, res) => {
 			req.body.updatedTask
 		);
 
-		res.json(taskToUpdate);
+		req.io.emit('test', 'Hello');
+		res.json(req.body.updatedTask);
 	} catch (error) {
+		console.log(error);
 		res.status(404).json(error);
 	}
-
-	socket.broadcast.emit('test', 'testUpdate!');
 };
 
 // Delete the task which id matches the id sent in body.
