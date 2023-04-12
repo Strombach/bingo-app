@@ -1,5 +1,3 @@
-const { createServer } = require('http');
-const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -46,6 +44,7 @@ connectDatabase(process.env.MONGO_USERNAME, process.env.MONGO_PASSWORD).catch(
 
 app.use('/api/tasks', require('./routes/taskRoute'));
 app.use('/api/user', require('./routes/userRoute'));
+app.use('/api/values', require('./routes/valuesRoute'));
 
 // Catch 404
 app.use((req, res) => {

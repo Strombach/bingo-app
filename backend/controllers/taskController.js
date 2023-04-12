@@ -29,7 +29,8 @@ taskController.getTask = async (req, res) => {
 taskController.postTask = async (req, res) => {
 	try {
 		const newTask = new Task({
-			task: 'Testeli test test',
+			task: 'New task',
+			description: 'New task',
 			lifeline: false,
 			isDone: false,
 			value: 200,

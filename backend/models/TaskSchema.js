@@ -6,6 +6,11 @@ const TaskSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 	},
+	description: {
+		type: String,
+		required: false,
+		trim: true,
+	},
 	value: {
 		type: Number,
 		required: true,
