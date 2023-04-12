@@ -1,5 +1,4 @@
 <script setup>
-    import { ref } from 'vue';
     import { useUserStore } from '../stores/auth.store';
     import { useTaskStore } from '../stores/task.store';
 
@@ -12,7 +11,6 @@
     })
 
     function selecetTile() {
-        if (store.user.userType === 'svenne') return;
         props.onSelect(props.task)
     }
 </script>
@@ -21,14 +19,15 @@
     <div class="bingo_tile"
         :class="{ isDone: task.isDone && !task.lifeline, lifeline: task.isDone && task.lifeline, selected: task._id === taskStore.selectedTask._id }"
         @click="selecetTile">
-        <h4>{{ task.task }}</h4>
-        <p>{{ task.value }}</p>
+        <p>{{ task.task }}</p>
     </div>
 </template>
 
 <style scoped>
     .bingo_tile {
         border-style: solid;
+        display: block;
+        box-sizing: border-box;
     }
 
     .isDone {

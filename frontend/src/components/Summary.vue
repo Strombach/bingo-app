@@ -1,8 +1,7 @@
 <script setup>
-    import { ref } from 'vue';
-
     const props = defineProps({
-        sum: Number
+        sum: Number,
+        checkRows: Function
     })
 </script>
 

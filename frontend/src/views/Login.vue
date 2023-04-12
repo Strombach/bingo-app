@@ -46,6 +46,7 @@
 </script>
 
 <template>
+    <h1>BINGO!!!</h1>
     <p v-if="failed">WRONG USERNAME OR PASSWORD</p>
     <form @submit.prevent="login">
         <label>Username</label>

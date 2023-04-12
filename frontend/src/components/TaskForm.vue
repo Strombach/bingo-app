@@ -24,8 +24,8 @@
                 <textarea name="task" id="task" rows="1" v-model="props.task.task"></textarea>
             </div>
             <div class="box">
-                <label for="value">Worth (SEK): </label>
-                <input name="value" type="number" min="0" v-model="props.task.value">
+                <label for="value">Description: </label>
+                <textarea name="task" id="task" rows="3" v-model="props.task.description"></textarea>
             </div>
             <div class="isDone">
                 <label for="isDone">Done: </label>
