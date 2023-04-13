@@ -6,10 +6,20 @@
 </script>
 
 <template>
-    <div>
-        <p>Sum: {{ props.sum }}</p>
+    <div class="sum">
+        <div class="content">
+            <h3>Summa: {{ props.sum }}</h3>
+        </div>
     </div>
 </template>
 
 <style scoped>
+    .sum {
+        display: flex;
+        justify-content: center;
+    }
+
+    .content {
+        max-width: 200px;
+    }
 </style>

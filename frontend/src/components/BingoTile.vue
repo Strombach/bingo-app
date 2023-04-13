@@ -31,14 +31,14 @@
     }
 
     .isDone {
-        background-color: green;
+        background-color: rgb(42, 183, 42);
     }
 
     .lifeline {
-        background-color: yellow;
+        background-color: rgb(240, 240, 16);
     }
 
     .selected {
-        background-color: blue;
+        background-color: grey;
     }
 </style>
