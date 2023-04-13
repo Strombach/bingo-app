@@ -83,14 +83,16 @@
         </div>
     </div>
     <div id="info">
-        <div>
+        <div class="content">
             <h3>{{ taskStore.selectedTask.task }}</h3>
             <p>{{ taskStore.selectedTask.description }}</p>
         </div>
     </div>
     <hr>
     <div class="form" v-if="userStore.user.userType !== 'svenne'" id="tile_form">
-        <TaskForm :onSave="updateTask" :task="taskStore.selectedTask"></TaskForm>
+        <div class="taskForm">
+            <TaskForm :onSave="updateTask" :task="taskStore.selectedTask"></TaskForm>
+        </div>
     </div>
 </template>
 
@@ -110,16 +112,20 @@
         grid-template-rows: repeat(5, 75px);
     }
 
+    #info {
+        margin: 20px 0 20px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .content {
+        max-width: 400px;
+    }
 
     .tile {
         overflow: hidden;
         max-height: 75px;
         min-height: 75px;
-    }
-
-    .check {
-        display: block;
-        width: 100%;
     }
 
     #valCol {
@@ -128,6 +134,11 @@
     }
 
     .form {
-        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .taskForm {
+        max-width: 400px;
     }
 </style>

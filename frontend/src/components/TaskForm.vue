@@ -34,7 +34,6 @@
             <div class="lifeline">
                 <label for="lifeline">Used lifeline: </label>
                 <input type="checkbox" @change="checkLifeline" name="lifeline" id="" v-model="props.task.lifeline">
-
             </div>
             <button @click="props.onSave">SAVE</button>
         </form>
@@ -64,6 +63,7 @@
     }
 
     button {
-        width: 100%;
+        margin: 10px;
+        width: 75%;
     }
 </style>
