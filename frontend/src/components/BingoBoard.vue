@@ -1,8 +1,6 @@
 <script setup>
     import BingoTile from '../components/BingoTile.vue'
     import Summary from '../components/Summary.vue';
-    import CheckMark from './CheckMark.vue'
-    import Value from './Value.vue';
     import { useUserStore } from '../stores/auth.store';
     import { useTaskStore } from '../stores/task.store';
     import { useValuesStore } from '../stores/values.store';
@@ -81,12 +79,6 @@
             <div class="bingo-col" v-for=" arr, index in allTasks">
                 <BingoTile class="tile" v-for="obj in arr" :key="obj._id" :task="obj" :onSelect="handleSelect">
                 </BingoTile>
-                <div class="val" v-if="userStore.user.userType !== 'svenne'">
-                    <Value :value="values.colVal[index]" :index="index"></Value>
-                </div>
-            </div>
-            <div class="val" v-if="userStore.user.userType !== 'svenne'">
-                <Value v-for="value, index in values.rowVal" :index="index" :value="value"></Value>
             </div>
         </div>
     </div>
@@ -114,8 +106,8 @@
         margin: 0;
         padding: 0;
         display: grid;
-        grid-template-columns: repeat(6, 75px);
-        grid-template-rows: repeat(6, 75px);
+        grid-template-columns: repeat(5, 75px);
+        grid-template-rows: repeat(5, 75px);
     }
 
 

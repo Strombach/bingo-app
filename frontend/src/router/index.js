@@ -1,5 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import Bingo from '../views/Home.vue';
+import Rules from '../views/Rules.vue';
 import Login from '../views/Login.vue';
 import storage from '../stores/localStorage.store';
 
@@ -16,6 +17,14 @@ const routes = [
 		path: '/',
 		name: 'Bingo',
 		component: Bingo,
+		meta: {
+			requiresAuth: true,
+		},
+	},
+	{
+		path: '/rules',
+		name: 'Rules',
+		component: Rules,
 		meta: {
 			requiresAuth: true,
 		},

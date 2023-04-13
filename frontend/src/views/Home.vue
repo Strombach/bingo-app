@@ -13,12 +13,6 @@
 </script>
 
 <template>
-    <div id="nav">
-        <h1>BINGO!!!</h1>
-        <router-link :to="'/login'">Login</router-link> |
-        <router-link :to="'/'">Bingo</router-link>
-        | <button @click="logout">Logout</button>
-    </div>
     <BingoBoard></BingoBoard>
 </template>
 
