@@ -38,7 +38,15 @@
     <h1>Regler</h1>
     <div class="content">
         <div class="rules">
-            <p>{{ rules }}</p>
+            <!-- <p>{{ rules }}</p> -->
+            <p>1. You do not talk about Fight Club.</p>
+            <p>2. You do NOT talk about Svensexa.</p>
+            <p>3. Alla tasks är frivilliga.</p>
+            <p>4. Det måste finnas bildbevis för att en task ska bli godkänd.</p>
+            <p>5. Bestmans godkänner tasksen och har sista ordet.</p>
+            <p>6. Tasksen får ej kombineras utan ska göras var för sig.</p>
+            <p>7. Brudgummen måste under alla tasks ha minst tre klädesplagg på sig.</p>
+
         </div>
     </div>
 </template>
